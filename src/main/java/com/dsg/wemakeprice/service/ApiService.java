@@ -18,5 +18,5 @@ public interface ApiService {
     List<ApiResponse> list();
 
     // 4. 제출된 신청서 승인
-    ApiResponse.ApproveDto approve(String companyRegistrationNumber);
+    ApiResponse.ApproveDto approve(String adminId, String companyRegistrationNumber);
 }

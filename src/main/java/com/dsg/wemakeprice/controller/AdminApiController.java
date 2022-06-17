@@ -18,27 +18,31 @@ public class AdminApiController {
     // 3. 1) 제출된 신청서 조회 api, param o
     @GetMapping("/list/query")
     public ResponseEntity<?> listQuery(
+            @RequestHeader(value = "adminId") String adminId,
             @RequestParam(value = "companyRegistrationNumber") String companyRegistrationNumber,
             @RequestParam(value = "companyName") String companyName
     ) {
-        log.info("admin list/query start, companyRegistrationNumber: {}, companyName: {}",
-                companyRegistrationNumber, companyName);
+        log.info("admin list/query start, adminId: {}, companyRegistrationNumber: {}, companyName: {}",
+                adminId, companyRegistrationNumber, companyName);
         return new ResponseEntity<>(apiService.list(companyRegistrationNumber, companyName), HttpStatus.OK);
     }
 
     // 3. 2) 제출된 신청서 조회 api, param x
     @GetMapping("/list")
-    public ResponseEntity<?> list() {
-        log.info("admin list start");
+    public ResponseEntity<?> list(
+            @RequestHeader(value = "adminId") String adminId
+    ) {
+        log.info("admin list start, adminId: {}", adminId);
         return new ResponseEntity<>(apiService.list(), HttpStatus.OK);
     }
 
     // 4. 제출된 신청서 승인 api
     @PutMapping("/approve")
     public ResponseEntity<?> approve(
+            @RequestHeader(value = "adminId") String adminId,
             @RequestParam("companyRegistrationNumber") String companyRegistrationNumber
     ) {
-        log.info("admin approve start, companyRegistrationNumber: {}", companyRegistrationNumber);
-        return new ResponseEntity<>(apiService.approve(companyRegistrationNumber), HttpStatus.OK);
+        log.info("admin approve start, adminId: {}, companyRegistrationNumber: {}", adminId, companyRegistrationNumber);
+        return new ResponseEntity<>(apiService.approve(adminId, companyRegistrationNumber), HttpStatus.OK);
     }
 }

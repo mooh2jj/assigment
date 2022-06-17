@@ -81,7 +81,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     @Transactional
-    public ApiResponse.ApproveDto approve(String companyRegistrationNumber) {
+    public ApiResponse.ApproveDto approve(String adminId, String companyRegistrationNumber) {
 
         Company company = companyRepository.findById(companyRegistrationNumber)
         .orElseThrow(() -> new RuntimeException("존재하지 않는 company입니다."));
@@ -89,7 +89,7 @@ public class ApiServiceImpl implements ApiService {
         company.approve();
 
         return ApiResponse.ApproveDto.builder()
-                .adminId("admin-hong@we.co.kr")
+                .adminId(adminId)
                 .adminName("adminName")
                 .approvedDatetime(company.getApprovedDatetime())
                 .build();
