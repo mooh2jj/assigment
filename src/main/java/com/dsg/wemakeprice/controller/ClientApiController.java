@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RestController
 @RequestMapping("/client/api")
@@ -27,7 +29,7 @@ public class ClientApiController {
 
     // 1. 입점을 원하는 회사는 신청서를 제출할 수 있습니다. - 신청서 제출 api
     @PostMapping("/submit")
-    public ResponseEntity<?> submit(@RequestBody ApiRequest apiRequest) {
+    public ResponseEntity<?> submit(@RequestBody @Valid ApiRequest apiRequest) {
         log.info("client submit start, ApiRequest: {}", apiRequest);
         ApiResponse response = apiService.submit(apiRequest);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
