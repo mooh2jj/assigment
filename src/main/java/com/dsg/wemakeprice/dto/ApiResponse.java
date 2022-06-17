@@ -3,6 +3,7 @@ package com.dsg.wemakeprice.dto;
 import com.dsg.wemakeprice.entity.Company;
 import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.type.RegisterStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class ApiResponse {
     private String managerName;
     private String managerEmail;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime approvedDatetime;
 
     @Builder
