@@ -28,7 +28,7 @@ public class ClientApiController {
     // 1. 입점을 원하는 회사는 신청서를 제출할 수 있습니다. - 신청서 제출 api
     @PostMapping("/submit")
     public ResponseEntity<?> submit(@RequestBody ApiRequest apiRequest) {
-        log.info("submit start, ApiRequest: {}", apiRequest);
+        log.info("client submit start, ApiRequest: {}", apiRequest);
         ApiResponse response = apiService.submit(apiRequest);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -38,7 +38,7 @@ public class ClientApiController {
     public ResponseEntity<?> search(
             @RequestParam("companyRegistrationNumber") String companyRegistrationNumber
     ) {
-        log.info("search start, companyRegistrationNumber: {}", companyRegistrationNumber);
+        log.info("client search start, companyRegistrationNumber: {}", companyRegistrationNumber);
         return new ResponseEntity<>(apiService.search(companyRegistrationNumber), HttpStatus.OK);
     }
 

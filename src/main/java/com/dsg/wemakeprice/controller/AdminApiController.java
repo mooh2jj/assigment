@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -24,7 +21,7 @@ public class AdminApiController {
             @RequestParam("companyRegistrationNumber") String companyRegistrationNumber,
             @RequestParam("companyName") String companyName
     ) {
-        log.info("list start, companyRegistrationNumber: {}, companyName: {}", companyRegistrationNumber, companyName);
+        log.info("admin list start, companyRegistrationNumber: {}, companyName: {}", companyRegistrationNumber, companyName);
         return new ResponseEntity<>(apiService.list(companyRegistrationNumber, companyName), HttpStatus.OK);
     }
 }
