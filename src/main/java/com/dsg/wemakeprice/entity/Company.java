@@ -1,7 +1,5 @@
 package com.dsg.wemakeprice.entity;
 
-import com.dsg.wemakeprice.dto.ManagerDto;
-import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.type.RegisterStatus;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -39,5 +37,11 @@ public class Company {
         this.manager = manager;
         this.registerStatus = registerStatus;
         this.approvedDatetime = approvedDatetime;
+    }
+
+    // admin 승인 메서드
+    public void approve() {
+        this.registerStatus = RegisterStatus.APPROVAL;
+        this.approvedDatetime = LocalDateTime.now();
     }
 }

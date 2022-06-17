@@ -24,4 +24,13 @@ public class AdminApiController {
         log.info("admin list start, companyRegistrationNumber: {}, companyName: {}", companyRegistrationNumber, companyName);
         return new ResponseEntity<>(apiService.list(companyRegistrationNumber, companyName), HttpStatus.OK);
     }
+
+    // 4. 제출된 신청서 승인 api
+    @PutMapping("/approve")
+    public ResponseEntity<?> approve(
+            @RequestParam("companyRegistrationNumber") String companyRegistrationNumber
+    ) {
+        log.info("admin approve start, companyRegistrationNumber: {}", companyRegistrationNumber);
+        return new ResponseEntity<>(apiService.approve(companyRegistrationNumber), HttpStatus.OK);
+    }
 }

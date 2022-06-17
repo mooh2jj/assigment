@@ -11,6 +11,7 @@ import com.dsg.wemakeprice.type.RegisterStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +26,7 @@ public class ApiServiceImpl implements ApiService {
     private final ApiRepository apiRepository;
 
     @Override
+    @Transactional
     public ApiResponse submit(ApiRequest apiRequest) {
 
         Manager manager = Manager.builder()
@@ -50,6 +52,7 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ApiResponse search(String companyRegistrationNumber) {
 
         ApiResponse apiResponse = apiRepository.search(companyRegistrationNumber);
@@ -59,11 +62,28 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ApiResponse> list(String companyRegistrationNumber, String companyName) {
         List<ApiResponse> responseList = apiRepository.list(companyRegistrationNumber, companyName);
         log.info("responseList: {}", responseList);
 
         return responseList;
+    }
+
+    @Override
+    @Transactional
+    public ApiResponse.ApproveDto approve(String companyRegistrationNumber) {
+
+        Company company = companyRepository.findById(companyRegistrationNumber)
+        .orElseThrow(() -> new RuntimeException("존재하지 않는 company입니다."));
+        // 승인
+        company.approve();
+
+        return ApiResponse.ApproveDto.builder()
+                .adminId("admin-hong@we.co.kr")
+                .adminName("admiName")
+                .approvedDatetime(company.getApprovedDatetime())
+                .build();
     }
 
 
