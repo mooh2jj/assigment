@@ -40,16 +40,8 @@ public class ApiServiceImpl implements ApiService {
         Company savedCompany = companyRepository.save(company);
 
 
-        ApiResponse apiResponse = ApiResponse.builder()
-                .companyName(savedCompany.getCompanyName())
-                .companyRegistrationNumber(savedCompany.getCompanyRegistrationNumber())
-                .companyAddress(savedCompany.getCompanyAddress())
-                .managerName(savedManager.getManagerName())
-                .managerEmail(savedManager.getManagerEmail())
-                .registerStatus(savedCompany.getRegisterStatus())
-                .approvedDatetime(savedCompany.getApprovedDatetime())
-                .build();
-
-        return apiResponse;
+        return ApiResponse.mapToResponse(savedManager, savedCompany);
     }
+
+
 }

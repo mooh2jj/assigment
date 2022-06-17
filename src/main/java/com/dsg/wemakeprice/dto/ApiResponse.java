@@ -1,5 +1,7 @@
 package com.dsg.wemakeprice.dto;
 
+import com.dsg.wemakeprice.entity.Company;
+import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.type.RegisterStatus;
 import lombok.Builder;
 import lombok.Data;
@@ -34,5 +36,17 @@ public class ApiResponse {
         this.managerName = managerName;
         this.managerEmail = managerEmail;
         this.approvedDatetime = approvedDatetime;
+    }
+
+    public static ApiResponse mapToResponse(Manager savedManager, Company savedCompany) {
+        return ApiResponse.builder()
+                .companyName(savedCompany.getCompanyName())
+                .companyRegistrationNumber(savedCompany.getCompanyRegistrationNumber())
+                .companyAddress(savedCompany.getCompanyAddress())
+                .managerName(savedManager.getManagerName())
+                .managerEmail(savedManager.getManagerEmail())
+                .registerStatus(savedCompany.getRegisterStatus())
+                .approvedDatetime(savedCompany.getApprovedDatetime())
+                .build();
     }
 }
