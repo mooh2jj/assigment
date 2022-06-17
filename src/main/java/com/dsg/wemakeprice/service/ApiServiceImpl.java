@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -39,6 +40,7 @@ public class ApiServiceImpl implements ApiService {
                 .companyAddress(apiRequest.getCompanyAddress())
                 .registerStatus(RegisterStatus.REQUEST)
                 .manager(savedManager)
+                .approvedDatetime(LocalDateTime.now())
                 .build();
 
         Company savedCompany = companyRepository.save(company);
