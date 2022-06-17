@@ -3,6 +3,7 @@ package com.dsg.wemakeprice.dto;
 import com.dsg.wemakeprice.entity.Company;
 import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.type.RegisterStatus;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class ApiResponse {
     private LocalDateTime approvedDatetime;
 
     @Builder
+    @QueryProjection
     public ApiResponse(String companyRegistrationNumber, String companyName, String companyAddress, RegisterStatus registerStatus, String managerName, String managerEmail, LocalDateTime approvedDatetime) {
         this.companyRegistrationNumber = companyRegistrationNumber;
         this.companyName = companyName;

@@ -2,16 +2,14 @@ package com.dsg.wemakeprice.controller;
 
 import com.dsg.wemakeprice.dto.ApiRequest;
 import com.dsg.wemakeprice.dto.ApiResponse;
-import com.dsg.wemakeprice.dto.CompanyDto;
-import com.dsg.wemakeprice.dto.ManagerDto;
-import com.dsg.wemakeprice.entity.Company;
-import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.service.ApiService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -29,7 +27,16 @@ public class ApiController {
 
     @PostMapping("/submit")
     public ResponseEntity<?> submit(@RequestBody ApiRequest apiRequest) {
+        log.info("submit start, ApiRequest: {}", apiRequest);
         ApiResponse response = apiService.submit(apiRequest);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> search(
+            @RequestParam("companyRegistrationNumber") String companyRegistrationNumber
+    ) {
+        log.info("search start, companyRegistrationNumber: {}", companyRegistrationNumber);
+        return new ResponseEntity<>(apiService.search(companyRegistrationNumber), HttpStatus.OK);
     }
 }
