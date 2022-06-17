@@ -2,6 +2,7 @@ package com.dsg.wemakeprice.repository;
 
 import com.dsg.wemakeprice.dto.ApiResponse;
 import com.dsg.wemakeprice.dto.QApiResponse;
+import com.dsg.wemakeprice.type.RegisterStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -52,6 +53,7 @@ public class ApiRepository {
                 .leftJoin(company.manager, manager)
                 .where(company.companyRegistrationNumber.eq(companyRegistrationNumber)
                         .and(company.companyName.eq(companyName))
+                        .and(company.registerStatus.eq(RegisterStatus.REQUEST))
                 ).fetch();
     }
 

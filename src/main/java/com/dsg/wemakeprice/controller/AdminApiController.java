@@ -18,6 +18,7 @@ public class AdminApiController {
 
     private final ApiService apiService;
 
+    // 3. 제출된 신청서 조회 api
     @GetMapping("/list")
     public ResponseEntity<?> list(
             @RequestParam("companyRegistrationNumber") String companyRegistrationNumber,
