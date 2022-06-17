@@ -1,6 +1,13 @@
 
 spring:
 
+  batch:
+    job:
+      enabled: false
+      names: ${job.name:NONE}
+    jdbc:
+      initialize-schema: always
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/assignment?useSSL=false&serverTimezone=Asia/Seoul
@@ -19,3 +26,19 @@ spring:
     properties:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ehtjd33@gmail.com
+    password: zmgoccjzlfqowudj
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
