@@ -1,5 +1,6 @@
 package com.dsg.wemakeprice.entity;
 
+import com.dsg.wemakeprice.dto.ManagerDto;
 import com.dsg.wemakeprice.entity.Manager;
 import com.dsg.wemakeprice.type.RegisterStatus;
 import lombok.AccessLevel;
@@ -31,10 +32,11 @@ public class Company {
     private LocalDateTime approvedDatetime;
 
     @Builder
-    public Company(String companyRegistrationNumber, String companyName, String companyAddress, RegisterStatus registerStatus, LocalDateTime approvedDatetime) {
+    public Company(String companyRegistrationNumber, String companyName, String companyAddress, Manager manager, RegisterStatus registerStatus, LocalDateTime approvedDatetime) {
         this.companyRegistrationNumber = companyRegistrationNumber;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
+        this.manager = manager;
         this.registerStatus = registerStatus;
         this.approvedDatetime = approvedDatetime;
     }

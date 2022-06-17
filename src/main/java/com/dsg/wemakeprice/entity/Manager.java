@@ -23,6 +23,7 @@ public class Manager {
     private String managerName;
     private String managerEmail;
 
+
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Company> companies = new ArrayList<>();
