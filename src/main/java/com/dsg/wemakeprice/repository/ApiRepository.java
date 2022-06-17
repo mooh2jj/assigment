@@ -53,7 +53,6 @@ public class ApiRepository {
                 .leftJoin(company.manager, manager)
                 .where(company.companyRegistrationNumber.eq(companyRegistrationNumber)
                         .and(company.companyName.eq(companyName))
-                        .and(company.registerStatus.eq(RegisterStatus.REQUEST))
                 ).fetch();
     }
 
