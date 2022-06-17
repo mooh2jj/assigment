@@ -58,5 +58,13 @@ public class ApiServiceImpl implements ApiService {
         return responseList;
     }
 
+    @Override
+    public List<ApiResponse> list(String companyRegistrationNumber, String companyName) {
+        List<ApiResponse> responseList = apiRepository.list(companyRegistrationNumber, companyName);
+        log.info("responseList: {}", responseList);
+
+        return responseList;
+    }
+
 
 }

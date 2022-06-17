@@ -38,4 +38,21 @@ public class ApiRepository {
                 ).fetch();
     }
 
+    public List<ApiResponse> list(String companyRegistrationNumber, String companyName) {
+        return queryFactory
+                .select(new QApiResponse(
+                        company.companyRegistrationNumber,
+                        company.companyName,
+                        company.companyAddress,
+                        company.registerStatus,
+                        manager.managerName,
+                        manager.managerEmail,
+                        company.approvedDatetime))
+                .from(company)
+                .leftJoin(company.manager, manager)
+                .where(company.companyRegistrationNumber.eq(companyRegistrationNumber)
+                        .and(company.companyName.eq(companyName))
+                ).fetch();
+    }
+
 }

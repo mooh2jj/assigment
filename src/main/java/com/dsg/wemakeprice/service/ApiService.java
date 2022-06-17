@@ -12,4 +12,7 @@ public interface ApiService {
 
     // 2. 신청서 조회
     List<ApiResponse> search(String companyRegistrationNumber);
+
+    // 3. 제출된 신청서 목록
+    List<ApiResponse> list(String companyRegistrationNumber, String companyName);
 }
