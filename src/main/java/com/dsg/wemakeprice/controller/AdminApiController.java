@@ -15,14 +15,22 @@ public class AdminApiController {
 
     private final ApiService apiService;
 
-    // 3. 제출된 신청서 조회 api
-    @GetMapping("/list")
-    public ResponseEntity<?> list(
-            @RequestParam("companyRegistrationNumber") String companyRegistrationNumber,
-            @RequestParam("companyName") String companyName
+    // 3. 1) 제출된 신청서 조회 api, param o
+    @GetMapping("/list/query")
+    public ResponseEntity<?> listQuery(
+            @RequestParam(value = "companyRegistrationNumber") String companyRegistrationNumber,
+            @RequestParam(value = "companyName") String companyName
     ) {
-        log.info("admin list start, companyRegistrationNumber: {}, companyName: {}", companyRegistrationNumber, companyName);
+        log.info("admin list/query start, companyRegistrationNumber: {}, companyName: {}",
+                companyRegistrationNumber, companyName);
         return new ResponseEntity<>(apiService.list(companyRegistrationNumber, companyName), HttpStatus.OK);
+    }
+
+    // 3. 2) 제출된 신청서 조회 api, param x
+    @GetMapping("/list")
+    public ResponseEntity<?> list() {
+        log.info("admin list start");
+        return new ResponseEntity<>(apiService.list(), HttpStatus.OK);
     }
 
     // 4. 제출된 신청서 승인 api

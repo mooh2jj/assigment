@@ -71,6 +71,15 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<ApiResponse> list() {
+        List<ApiResponse> responseList = apiRepository.list();
+        log.info("responseList: {}", responseList);
+
+        return responseList;
+    }
+
+    @Override
     @Transactional
     public ApiResponse.ApproveDto approve(String companyRegistrationNumber) {
 
@@ -81,7 +90,7 @@ public class ApiServiceImpl implements ApiService {
 
         return ApiResponse.ApproveDto.builder()
                 .adminId("admin-hong@we.co.kr")
-                .adminName("admiName")
+                .adminName("adminName")
                 .approvedDatetime(company.getApprovedDatetime())
                 .build();
     }

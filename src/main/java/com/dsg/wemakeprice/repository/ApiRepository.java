@@ -55,4 +55,18 @@ public class ApiRepository {
                 ).fetch();
     }
 
+    public List<ApiResponse> list() {
+        return queryFactory
+                .select(new QApiResponse(
+                        company.companyRegistrationNumber,
+                        company.companyName,
+                        company.companyAddress,
+                        company.registerStatus,
+                        manager.managerName,
+                        manager.managerEmail,
+                        company.approvedDatetime))
+                .from(company)
+                .leftJoin(company.manager, manager)
+                .fetch();
+    }
 }
