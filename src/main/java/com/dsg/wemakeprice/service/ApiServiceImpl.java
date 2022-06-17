@@ -50,12 +50,12 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<ApiResponse> search(String companyRegistrationNumber) {
+    public ApiResponse search(String companyRegistrationNumber) {
 
-        List<ApiResponse> responseList = apiRepository.search(companyRegistrationNumber);
-        log.info("responseList: {}", responseList);
+        ApiResponse apiResponse = apiRepository.search(companyRegistrationNumber);
+        log.info("apiResponse: {}", apiResponse);
 
-        return responseList;
+        return apiResponse;
     }
 
     @Override

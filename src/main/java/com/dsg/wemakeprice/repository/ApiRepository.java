@@ -2,7 +2,6 @@ package com.dsg.wemakeprice.repository;
 
 import com.dsg.wemakeprice.dto.ApiResponse;
 import com.dsg.wemakeprice.dto.QApiResponse;
-import com.dsg.wemakeprice.type.RegisterStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,7 @@ public class ApiRepository {
     }
 
 
-    public List<ApiResponse> search(String companyRegistrationNumber) {
+    public ApiResponse search(String companyRegistrationNumber) {
         return queryFactory
                 .select(new QApiResponse(
                         company.companyRegistrationNumber,
@@ -36,7 +35,7 @@ public class ApiRepository {
                 .leftJoin(company.manager, manager)
                 .where(
                         company.companyRegistrationNumber.eq(companyRegistrationNumber)
-                ).fetch();
+                ).fetchOne();
     }
 
     public List<ApiResponse> list(String companyRegistrationNumber, String companyName) {
