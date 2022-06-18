@@ -3,7 +3,7 @@
 
 **프로그램 기술 스택**
 
-`java`, `springBoot`, `Gradle`, `Mysql`, `JPA`, `Querydsl`, `docker`, `springBatch`
+`java`, `springBoot`, `Gradle`, `Mysql`, `JPA`, `Querydsl`, `docker`, `springBatch`, `JUnit5`
 
 <br>
 
@@ -22,5 +22,10 @@
 1) DB(Mysql) 연결 - docker-compose.yml 파일 실행: `docker-compose up`
 2) api 테스트 시동 - project 내 test폴더 > http 폴더 안 `admin-api`, `client-api` http 파일 Run
 
-ex.
+* http 파일 사진
 ![image](https://user-images.githubusercontent.com/62453668/174442919-f7fc35db-a111-4997-a945-28c4e32ede83.png)
+
+3) batch 바로 확인 - BatchController api Get `localhost:8080/batch/job` 을 보냄, 바로 이메일 알람 확인 가능
+
+* batch로 온 메일발송 사진
+![image](https://user-images.githubusercontent.com/62453668/174445081-063ce9f6-3024-418b-9b3e-41976c29b8e3.png)
