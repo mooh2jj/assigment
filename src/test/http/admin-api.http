@@ -1,0 +1,18 @@
+### 3. 1) 제출된 신청서 조회 api, param o
+GET {{host}}/admin/api/list/query?companyRegistrationNumber=122-87-55227&companyName=dsgCompany
+adminId: admin-hong@we.co.kr
+
+<> 2022-06-18T150338.200.json
+
+
+### 3. 2) 제출된 신청서 조회 api, param x
+GET {{host}}/admin/api/list
+adminId: admin-hong@we.co.kr
+
+<> 2022-06-18T150403.200.json
+
+### 4. 제출된 신청서 승인 api
+PUT {{host}}/admin/api/approve?companyRegistrationNumber=122-87-55227
+adminId: admin-hong@we.co.kr
+
+<> 2022-06-18T150505.200.json

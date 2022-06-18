@@ -1,0 +1,19 @@
+### 1. 신청서 제출 api
+POST {{host}}/client/api/submit
+Content-Type: application/json
+
+{
+  "companyName": "dsg5Company",
+  "companyRegistrationNumber": "124-87-55227",
+  "companyAddress": " 506 ",
+  "managerName": "dsg5",
+  "managerEmail": "dsg5@we.co.kr"
+}
+
+<> 2022-06-18T145124.201.json
+
+### 2. 신청서 조회 api
+GET {{host}}/client/api/search?companyRegistrationNumber=122-87-55227
+
+<> 2022-06-18T145243.200.json
+
