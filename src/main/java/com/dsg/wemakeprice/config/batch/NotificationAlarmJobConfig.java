@@ -39,7 +39,7 @@ public class NotificationAlarmJobConfig {
     private final MailSendService mailSendService;
     private final MailMessageGenerator messageGenerator;
 
-    private static final int CHUNK_SIZE = 4;
+    private static final int CHUNK_SIZE = 10;
 
     @Bean("notificationAlarmJob")
     public Job notificationAlarmJob(Step notificationAlarmStep) {
