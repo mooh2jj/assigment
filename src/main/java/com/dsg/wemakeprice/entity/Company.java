@@ -1,5 +1,6 @@
 package com.dsg.wemakeprice.entity;
 
+import com.dsg.wemakeprice.dto.ApiRequest;
 import com.dsg.wemakeprice.type.RegisterStatus;
 import lombok.*;
 
@@ -40,5 +41,16 @@ public class Company {
     public void approve() {
         this.registerStatus = RegisterStatus.APPROVAL;
         this.approvedDatetime = LocalDateTime.now();
+    }
+
+    public static Company of(ApiRequest apiRequest, Manager manager) {
+        return Company.builder()
+                .companyRegistrationNumber(apiRequest.getCompanyRegistrationNumber())
+                .companyName(apiRequest.getCompanyName())
+                .companyAddress(apiRequest.getCompanyAddress())
+                .registerStatus(RegisterStatus.REQUEST)
+                .manager(manager)
+                .approvedDatetime(LocalDateTime.now())
+                .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.dsg.wemakeprice.entity;
 
+import com.dsg.wemakeprice.dto.ApiRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -33,5 +34,12 @@ public class Manager {
         this.id = id;
         this.managerName = managerName;
         this.managerEmail = managerEmail;
+    }
+
+    public static Manager of(ApiRequest apiRequest) {
+        return Manager.builder()
+                .managerEmail(apiRequest.getManagerEmail())
+                .managerName(apiRequest.getManagerName())
+                .build();
     }
 }
