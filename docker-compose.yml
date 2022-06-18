@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: assginment
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: "assignment"
+      MYSQL_PASSWORD: "assignment"
+      MYSQL_DATABASE: "assignment"
+    ports:
+      - "3306:3306"
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
